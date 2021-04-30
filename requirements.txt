@@ -2,3 +2,5 @@ dbt
 tap-github
 target-csv
 jsonschema
+airflow-provider-great-expectations
+airflow_dbt
