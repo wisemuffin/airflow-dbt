@@ -15,14 +15,14 @@ default_dag_args = {
     "start_date": datetime(2020, 11, 24),
     "retry_delay": timedelta(minutes=10),
     # "on_failure_callback": notify_all_of_failure,
-    "depends_on_past": True,
-    "wait_for_downstream": True,
+    "depends_on_past": False,
     "retries": 0,
 }
 DAG_NAME = "standard_schedule"
 # DBT_DIR = "/home/dave/data-engineering/data-cicd"
-DBT_DIR = "/usr/local/airflow/dags/dbt"
+# DBT_DIR = "/usr/local/airflow/dags/dbt"
 # DBT_SELECTOR_PICKLE_DIR = "/home/dave/data-engineering/data-cicd/dbt_dags/data"
+DBT_DIR = "/usr/local/airflow/data-cicd"
 DBT_SELECTOR_PICKLE_DIR = "/usr/local/airflow/include/data"
 GLOBAL_CLI_FLAGS = "--no-write-json"
 

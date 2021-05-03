@@ -8,7 +8,7 @@ from airflow.operators.dummy_operator import DummyOperator
 from airflow.utils.dates import datetime
 from airflow.utils.dates import timedelta
 
-DBT_PATH = "/usr/local/airflow/data-cicd"
+DBT_DIR = "/usr/local/airflow/data-cicd"
 
 # These args will get passed on to each operator
 # You can override them on a per-task basis during operator initialization
@@ -25,7 +25,7 @@ default_args = {
 
 
 def checkIfRepoAlreadyCloned():
-    if os.path.exists(f"{DBT_PATH}/.git"):
+    if os.path.exists(f"{DBT_DIR}/.git"):
         return "dummy"
     return "git_clone"
 
@@ -39,7 +39,7 @@ with DAG(
 
     t_git_clone = BashOperator(
         task_id="git_clone",
-        bash_command=f"git clone https://github.com/wisemuffin/data-cicd.git {DBT_PATH}",
+        bash_command=f"git clone https://github.com/wisemuffin/data-cicd.git {DBT_DIR}",
     )
 
     # Notice the trigger_rule sets to one_success
@@ -50,7 +50,7 @@ with DAG(
     # With one_success, t_git_pull will not be skipped since it now needs only either dummy or git_clone to succeed.
     t_git_pull = BashOperator(
         task_id="git_pull",
-        bash_command=f"cd {DBT_PATH} && git pull",
+        bash_command=f"cd {DBT_DIR} && git pull",
         trigger_rule="one_success",
     )
 
@@ -66,11 +66,11 @@ with DAG(
     t_git_clone >> t_git_pull
 
     dbt_run = BashOperator(
-        task_id="dbt_run", bash_command=f"cd {DBT_PATH} && dbt run", dag=dag,
+        task_id="dbt_run", bash_command=f"cd {DBT_DIR} && dbt run", dag=dag,
     )
 
     dbt_test = BashOperator(
-        task_id="dbt_test", bash_command=f"cd {DBT_PATH} && dbt test", dag=dag,
+        task_id="dbt_test", bash_command=f"cd {DBT_DIR} && dbt test", dag=dag,
     )
 
     t_git_pull >> dbt_run >> dbt_test
