@@ -10,6 +10,9 @@ To run these DAGs locally:
 
 We are currently using a [sample `manifest.json`](https://github.com/fishtown-analytics/dbt-docs/blob/master/data/manifest.json) file pulled from the dbt docs, but if you would like to try these dags with your own dbt workflow, feel free to copy and paste your `manifest.json` file into the `dags/dbt/target/` directory.
 
+## additional config
+- once airflow is running, add a dbt profile.yml to /home/astro/.dbt/profiles.yml
+
 ## dbt_selectors_standard_schedule
 This DAG recieves all the DBT tasks based on DBT selectors [docs](https://www.astronomer.io/blog/airflow-dbt-2)
 
