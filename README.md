@@ -49,3 +49,9 @@ to run.
 ### TODO dbt_selectors_standard_schedule
 - current depencies pickle live in include/data/ will need to move them into s3
 
+## great_expectations
+example of using great expectations with local data
+
+## dbt_great_expectations
+NOT working
+provides boiler plate for DBT with great expectations
