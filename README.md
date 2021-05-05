@@ -1,6 +1,4 @@
-# Airflow DAGs for dbt
-
-> The code in this repository is meant to accompany [this blog post](https://astronomer.io/blog) on beginner and advanced implementation concepts at the intersection of dbt and Airflow.
+# Airflow Setup
 
 To run these DAGs locally:
 1. Download the [Astro CLI](https://github.com/astronomer/astro-cli)
@@ -15,6 +13,8 @@ To run these DAGs locally:
 
 # DAGS
 
+> The DBT DAGs in this repository are built ontop of [this blog post](https://astronomer.io/blog) on beginner and advanced implementation concepts at the intersection of dbt and Airflow.
+
 ## dbt_basic
 - runs some conditional logic to clone dbt repo
 - runs dbt without split each dbt model's build
@@ -23,7 +23,7 @@ To run these DAGs locally:
 - uses the manifest.json to build out depencies as individual Airflow DAG tasks. Giving greater visability on errors, and bringing retry logic to dbt.
 
 ## dbt_selectors_standard_schedule
-This DAG recieves all the DBT tasks based on DBT selectors [docs](https://www.astronomer.io/blog/airflow-dbt-2) this allows us to take dbt_advanced and break out the DBT model based on selectors. The benefit for this is if we need to run DAGs at different intervals and times.
+This DAG receives all the DBT tasks based on DBT selectors [docs](https://www.astronomer.io/blog/airflow-dbt-2) this allows us to take dbt_advanced and break out the DBT model based on selectors. The benefit for this is if we need to run DAGs at different intervals and times.
 
 CICD Tool
 - load manifest
