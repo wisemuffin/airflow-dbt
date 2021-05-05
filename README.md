@@ -1,4 +1,16 @@
-# Airflow Setup
+# DBT Airflow
+
+[DBT](https://www.getdbt.com/) is a data transformation library it is not a orchistraion tool. As such it doesnt handle failing models.
+
+The dbt_basic DAG shows how all models are built inside one task.
+
+To optimise this we split each model and test for each model into individual tasks in dbt_advanced DAG.
+
+With the DAG dbt_selectors_standard_schedule we go one step further and split the model up so we can run different parts of the DBT model at different times and intervals.
+
+> The DBT DAGs in this repository are built ontop of [this blog post](https://astronomer.io/blog) on beginner and advanced implementation concepts at the intersection of dbt and Airflow.
+
+## Airflow Setup
 
 To run these DAGs locally:
 1. Download the [Astro CLI](https://github.com/astronomer/astro-cli)
@@ -12,8 +24,6 @@ To run these DAGs locally:
 - dbt's manifest.json needs to be built each time in airflow docker: /usr/local/airflow/data-cicd/target
 
 # DAGS
-
-> The DBT DAGs in this repository are built ontop of [this blog post](https://astronomer.io/blog) on beginner and advanced implementation concepts at the intersection of dbt and Airflow.
 
 ## dbt_basic
 - runs some conditional logic to clone dbt repo
